@@ -66,13 +66,15 @@ for container in reviewCount_div:
 print(reviewCount)
 
 ingredientList = []
-ingridents_div = soup.find_all('div', class_= 'recipe-shopper-wrapper')
+ingredients_div = soup.find_all('li', class_= 'ingredients-item')
 
-for recipe in recipes:
-    driver.get(x)
-    for section in ingridents_div:
-        ingredients = container.section.fieldset.ul.label.text
-        print(ingridents)
+for link in links:
+    driver.get(link)
+    for container in ingridents_div:
+        ingredients = container.label.text
+        ingredients = ingredients.replace("\n", "", 2)
+        ingredientList.append(ingredients.strip())
+        print(ingredients)
 recipe_df = pd.DataFrame(list(zip(recipes, reviewCount, links)),
             columns = ["Recipe Name", "Review Count", "Link"])
 
