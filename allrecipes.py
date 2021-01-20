@@ -29,9 +29,10 @@ load_more = driver.find_elements_by_class_name("category-page-list-related-load-
 
 #note: this does not continue to click load more once the new page is loaded, need to figure out a wait script to load additional pages
 for x in range(len(load_more)):
+    print(x)
     if load_more[x].is_displayed():
         driver.execute_script("arguments[0].click();", load_more[x])
-        time.sleep(1)
+        sleep(1)
 
 page_source = driver.page_source
 
@@ -68,6 +69,7 @@ print(reviewCount)
 ingredientList = []
 ingredients_div = soup.find_all('li', class_= 'ingredients-item')
 
+import pdb;pdb.set_trace()
 for link in links:
     driver.get(link)
     for container in ingridents_div:
@@ -78,4 +80,4 @@ for link in links:
 recipe_df = pd.DataFrame(list(zip(recipes, reviewCount, links)),
             columns = ["Recipe Name", "Review Count", "Link"])
 
-
+driver.quit()
