@@ -107,6 +107,6 @@ for i in links:
     sleep(1)
 
 
-# save df
+# save pickle file
 
 pickle.dump(links, open('dessert_urls.pkl', 'wb'))
